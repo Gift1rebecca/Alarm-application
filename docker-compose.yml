@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  write-db: 
+    image: postgres
+    restart: always
+    ports: 
+      - "5432:5432"
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass123
+    volumes:
+      - ./custom_pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+  read-db:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGOB_DATABASE="vf-read-db"
